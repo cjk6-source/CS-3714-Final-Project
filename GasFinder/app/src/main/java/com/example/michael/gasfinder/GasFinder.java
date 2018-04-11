@@ -1,4 +1,4 @@
-package com.example.christiankang.gasfinder;
+package com.example.michael.gasfinder;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
