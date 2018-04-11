@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.michael.gasfinder.ListActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:layout_marginTop="10sp">
+            <TableRow>
+                <TextView
+                    android:text="@string/distance"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    />
+                <TextView
+                    android:text="@string/fuel_type"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    />
+                <TextView
+                    android:text="@string/order_by"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:id="@+id/search_distance"
+                    android:text="@string/default_distance"
+                    android:textAlignment="center"
+                    />
+                <Spinner
+                    android:id="@+id/fuelSpinner"
+                    />
+                <Spinner
+                    android:id="@+id/orderSpinner"
+                    />
+            </TableRow>
+        </TableLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/gas_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

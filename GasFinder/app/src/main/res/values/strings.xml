@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GasFinder</string>
+
+    <string name="fuel_type">Fuel Type</string>
+    <string name="order_by">Order By</string>
+    <string name="distance">Distance</string>
+    <string name="default_distance">10</string>
 </resources>
