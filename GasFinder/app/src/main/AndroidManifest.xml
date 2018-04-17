@@ -29,7 +29,11 @@
         <service
             android:name=".GPSService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
+        <activity android:name=".LogActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".DetailActivity"></activity>
     </application>
 
 </manifest>

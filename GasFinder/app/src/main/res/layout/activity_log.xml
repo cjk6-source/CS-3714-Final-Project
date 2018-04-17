@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.michael.gasfinder.LogActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            //Total
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:textSize="25dp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/totalInput"
+                    android:inputType="number"
+                    android:text="0"
+                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+                    android:textSize="25dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Total"
+                    android:textSize="25dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fuel Type"
+                android:textSize="25dp" />
+
+            //Fuel Type
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:weightSum="4">
+
+                <CheckBox
+                    android:id="@+id/regularCB"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:drawablePadding="20dp"
+                    android:layout_weight = "1"
+                    android:text="Regular"
+                    android:onClick="onCheckboxClicked"/>
+                <CheckBox
+                    android:id="@+id/plusCB"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:drawablePadding="20dp"
+                    android:layout_weight = "1"
+                    android:text="Plus"
+                    android:onClick="onCheckboxClicked"/>
+                <CheckBox
+                    android:id="@+id/premiumCB"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:drawablePadding="20dp"
+                    android:layout_weight = "1"
+                    android:text="Premium"
+                    android:onClick="onCheckboxClicked"/>
+                <CheckBox
+                    android:id="@+id/dieselCB"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:drawablePadding="20dp"
+                    android:layout_weight = "1"
+                    android:text="Diesel"
+                    android:onClick="onCheckboxClicked"/>
+            </LinearLayout>
+
+            //Cost Per Gal
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/perGalInput"
+                    android:inputType="number"
+                    android:text="0"
+                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+                    android:textSize="25dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" $ per Gal"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submitButton"
+                android:text="Submit"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

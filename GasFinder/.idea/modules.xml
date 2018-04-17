@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GasFinder.iml" filepath="$PROJECT_DIR$/GasFinder.iml" />
+      <module fileurl="file://C:\Users\Michael Lai\Desktop\Work\Senior Semester 2\CS-3714-Final-Project\GasFinder\GasFinder.iml" filepath="C:\Users\Michael Lai\Desktop\Work\Senior Semester 2\CS-3714-Final-Project\GasFinder\GasFinder.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Michael Lai\Desktop\Work\Senior Semester 2\CS-3714-Final-Project\GasFinder\app\app.iml" filepath="C:\Users\Michael Lai\Desktop\Work\Senior Semester 2\CS-3714-Final-Project\GasFinder\app\app.iml" />
     </modules>
   </component>
 </project>

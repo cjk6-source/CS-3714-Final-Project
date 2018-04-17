@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 public class ListActivity extends AppCompatActivity {
-
+    Location myLocation;
     GasAPI gasAPI;
     GPSBinder binder;
 
