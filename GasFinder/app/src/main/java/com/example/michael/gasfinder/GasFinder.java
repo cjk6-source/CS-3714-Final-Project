@@ -24,7 +24,7 @@ public class GasFinder extends AppCompatActivity {
 
     public void onClickList(View view)
     {
-        Intent intent = new Intent(/*this, ListActivity.class*/);
+        Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
 

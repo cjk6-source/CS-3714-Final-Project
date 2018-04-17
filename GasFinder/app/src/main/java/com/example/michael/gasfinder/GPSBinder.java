@@ -2,7 +2,10 @@ package com.example.michael.gasfinder;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.IBinder;
 
 /**
@@ -13,14 +16,47 @@ public class GPSBinder {
 
     GPSService service;
     Context myServiceContext;
-    boolean isBound;
+    Intent startGPSService;
 
-    public void BindGPSService(Context context) {
+    boolean isInitialized;
+    boolean isBound = false;
+
+    public GPSBinder(Context context) {
         myServiceContext = context;
+        startGPSService = new Intent(context, GPSService.class);
     }
 
-    public Object getSystemLocation() {
-        return myServiceContext.getSystemService(Context.LOCATION_SERVICE);
+    public boolean bindGPSService() {
+        myServiceContext.bindService(startGPSService, gpsServiceConnection, Context.BIND_AUTO_CREATE);
+
+        if (service != null) {
+            service.register();
+            isBound = true;
+            return true;
+        }
+        return isBound;
+    }
+
+    public boolean unBindGPSService() {
+        if (service != null) {
+            myServiceContext.unbindService(gpsServiceConnection);
+            service.unregister();
+            isBound = false;
+            return false;
+        }
+        return isBound;
+    }
+
+    public boolean isBound() {
+        return isBound;
+    }
+
+    public Location getSystemLocation() {
+        return service.getCurrentLocation();
+    }
+
+    public LocationManager getLocationManager() {
+        return (LocationManager) myServiceContext.getSystemService(Context.LOCATION_SERVICE);
     }
 
     private ServiceConnection gpsServiceConnection = new ServiceConnection() {
@@ -28,20 +64,21 @@ public class GPSBinder {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             GPSService.MyBinder binder = (GPSService.MyBinder) iBinder;
             service = binder.getService();
-            isBound = true;
-
+            isBound = bindGPSService();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
+            isBound = unBindGPSService();
             service = null;
-            isBound = false;
         }
     };
 
-    public void getGPSLocation() {
-        if (isBound) {
+    public Location updateCurrentlocation(Location currentLocation) {
+        return currentLocation;
+    }
 
-        }
+    public Context getContext() {
+        return myServiceContext;
     }
 }

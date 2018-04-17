@@ -24,7 +24,7 @@ public class GasAPI implements Response.Listener<String>, Response.ErrorListener
     private RequestQueue queue;
 
     private final String APIKEY = "83j74qb9so";
-    private final String SITEDOMAIN = "http://www.mygasfeed.com/";
+    private final String SITEDOMAIN = "http://api.mygasfeed.com";
 
     public GasAPI(ListActivity act) {
         listActivity = act;
@@ -58,6 +58,5 @@ public class GasAPI implements Response.Listener<String>, Response.ErrorListener
     @Override
     public void onResponse(String response) {
         Log.d("yee", response);
-
     }
 }

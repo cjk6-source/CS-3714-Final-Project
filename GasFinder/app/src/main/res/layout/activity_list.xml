@@ -48,7 +48,16 @@
                     android:id="@+id/orderSpinner"
                     />
             </TableRow>
+            <TableRow>
+                <!--Empty textview to center the buddon-->
+                <TextView />
+                <Button
+                    android:text="@string/find_stations"
+                    android:textSize="15sp"
+                    android:onClick="findStations"/>
+            </TableRow>
         </TableLayout>
+
 
         <ScrollView
             android:layout_width="match_parent"
