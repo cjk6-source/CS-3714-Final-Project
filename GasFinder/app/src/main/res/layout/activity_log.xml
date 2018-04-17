@@ -57,28 +57,32 @@
                     android:layout_height="90dp"
                     android:drawablePadding="20dp"
                     android:layout_weight = "1"
-                    android:text="Regular"/>
+                    android:text="Regular"
+                    android:onClick="onCheckboxClicked"/>
                 <CheckBox
                     android:id="@+id/plusCB"
                     android:layout_width="0dp"
                     android:layout_height="90dp"
                     android:drawablePadding="20dp"
                     android:layout_weight = "1"
-                    android:text="Plus"/>
+                    android:text="Plus"
+                    android:onClick="onCheckboxClicked"/>
                 <CheckBox
                     android:id="@+id/premiumCB"
                     android:layout_width="0dp"
                     android:layout_height="90dp"
                     android:drawablePadding="20dp"
                     android:layout_weight = "1"
-                    android:text="Premium"/>
+                    android:text="Premium"
+                    android:onClick="onCheckboxClicked"/>
                 <CheckBox
-                    android:id="@+id/DieselCB"
+                    android:id="@+id/dieselCB"
                     android:layout_width="0dp"
                     android:layout_height="90dp"
                     android:drawablePadding="20dp"
                     android:layout_weight = "1"
-                    android:text="Diesel"/>
+                    android:text="Diesel"
+                    android:onClick="onCheckboxClicked"/>
             </LinearLayout>
 
             //Cost Per Gal
