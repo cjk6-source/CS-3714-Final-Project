@@ -43,6 +43,21 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         submitButton.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
     public void onCheckboxClicked(View view) {
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
