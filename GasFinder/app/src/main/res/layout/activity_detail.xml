@@ -1,119 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.michael.gasfinder.DetailActivity">
-    <ScrollView
+    tools:context=".GasFinder">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/back_to_list"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="left"
+                android:onClick="onBackToList"
+                android:text="<--" />
+
+            <Button
+                android:id="@+id/log"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:onClick="onLog"
+                android:text="To Logger" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            //Station and Address
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:weightSum="2">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textSize="25dp"
-                    android:gravity="left"
-                    android:id="@+id/gasStationNameTextView"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textSize="25dp"
-                    android:layout_gravity="right"
-                    android:id="@+id/gasStationAddressTextView"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp">
 
             <TextView
+                android:id="@+id/station_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Prices "
-                android:textSize="30dp" />
+                android:layout_weight="1"
+                android:textSize="30sp" />
 
-            //Gas type and price 0
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:weightSum="4">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Regular: $ "
-                    android:textSize="25dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="25dp"
-                    android:id="@+id/regularPriceTextView"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Plus: $ "
-                    android:textSize="25dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="25dp"
-                    android:layout_gravity="right"
-                    android:id="@+id/plusPriceTextView"
-                    android:layout_weight="1"/>
-            </LinearLayout>
-
-            //Gas type and price 1
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:weightSum="4">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Preium: $ "
-                    android:textSize="25dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="25dp"
-                    android:id="@+id/premiumPriceTextView"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Diesel: $ "
-                    android:textSize="25dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="25dp"
-                    android:layout_gravity="right"
-                    android:id="@+id/dieselPriceTextView"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/station_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="27sp" />
 
         </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            tools:context=".DetailsScreen" />
+
+        <Button
+            android:id="@+id/recenter"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:onClick="onRecenter"
+            android:text="RECENTER" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="Current Prices"
+            android:textSize="30sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/regular"
+                    android:layout_weight="1"
+                    android:text="Regular:"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/mid"
+                    android:layout_weight="1"
+                    android:text="Mid:"
+                    android:textSize="25sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/premium"
+                    android:layout_weight="1"
+                    android:text="Premium:"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/diesel"
+                    android:layout_weight="1"
+                    android:text="Diesel:"
+                    android:textSize="25sp" />
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>
