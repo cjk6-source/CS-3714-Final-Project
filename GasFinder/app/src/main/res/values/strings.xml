@@ -3,7 +3,7 @@
 
     <string name="fuel_type">Fuel Type</string>
     <string name="order_by">Order By</string>
-    <string name="distance">Distance</string>
+    <string name="distance">Dist. (mi.)</string>
     <string name="find_stations">Find Stations!</string>
     <string name="default_distance">10</string>
 </resources>

@@ -37,9 +37,10 @@
 
             <TableRow>
                 <EditText
-                    android:id="@+id/search_distance"
+                    android:id="@+id/radius"
                     android:text="@string/default_distance"
                     android:textAlignment="center"
+                    android:inputType="number"
                     />
                 <Spinner
                     android:id="@+id/fuelSpinner"
