@@ -9,29 +9,29 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DBOpenHelper extends SQLiteOpenHelper {
+
     private static final String DATABASE_NAME = "gasdb";
     private static final int DATABASE_VERSION = 1;
-    public static final String TABLE_NAME = "gas history";
 
-    public static final String COLUMN_STATION_NAME = "station name";
+    public static final String TABLE_NAME = "gas_history";
+
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_STATION_NAME = "station_name";
     public static final String COLUMN_ADDRESS = "address";
     public static final String COLUMN_DATE = "date";
-    public static final String COLUMN_TOTAL_EXPENSE = "total expense";
-    public static final String COLUMN_FUEL_TYPE = "fuel type";
-    public static final String COLUMN_PRICE_PER_GALLON = "price per gallon";
+    public static final String COLUMN_TOTAL_EXPENSE = "total_expense";
+    public static final String COLUMN_FUEL_TYPE = "fuel_type";
+    public static final String COLUMN_PRICE_PER_GALLON = "price_per_gallon";
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + "(" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY," +
                     COLUMN_STATION_NAME + " TEXT," +
                     COLUMN_ADDRESS + " TEXT," +
                     COLUMN_DATE + " TEXT," +
-                    COLUMN_TOTAL_EXPENSE + " FLOAT," +
+                    COLUMN_TOTAL_EXPENSE + " REAL," +
                     COLUMN_FUEL_TYPE + " TEXT," +
-                    COLUMN_PRICE_PER_GALLON + " FLOAT)";
-
-    public DBOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory cursorFactory, int version) {
-        super(context, name, cursorFactory, version);
-    }
+                    COLUMN_PRICE_PER_GALLON + " REAL)";
 
     public DBOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
