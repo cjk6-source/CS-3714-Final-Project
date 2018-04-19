@@ -35,12 +35,16 @@
                     />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:id="@+id/focusRow">
                 <EditText
                     android:id="@+id/radius"
                     android:text="@string/default_distance"
                     android:textAlignment="center"
                     android:inputType="number"
+                    android:nextFocusUp="@id/focusRow"
                     />
                 <Spinner
                     android:id="@+id/fuelSpinner"

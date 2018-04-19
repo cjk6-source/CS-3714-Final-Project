@@ -41,6 +41,21 @@ public class GasStation {
         }
     }
 
+    public String getFuelPrice(String type) {
+        switch (type) {
+            case "Unleaded":
+                return getReg_price();
+            case "Plus":
+                return getMid_price();
+            case "Premium":
+                return getPrem_price();
+            case "Diesel":
+                return getDiesel_price();
+            default:
+                return "Fuel not found";
+        }
+    }
+
     public String getReg_price() {
         return reg_price;
     }
