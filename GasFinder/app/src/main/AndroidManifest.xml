@@ -33,7 +33,8 @@
 
         <activity android:name=".LogActivity" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".MapActivity"></activity>
     </application>
 
 </manifest>
