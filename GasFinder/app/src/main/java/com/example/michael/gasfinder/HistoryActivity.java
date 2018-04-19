@@ -1,57 +1,58 @@
 package com.example.michael.gasfinder;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener
 {
 
-    //Buttons
-    Button goBackButton;
-    Button clearAllButton;
+    Button back;
+    Button clear_all;
+    TextView total;
+    ListView history_list;
+
+    /* Adapter for list view */
+    /* Database manager */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        //Buttons
-        goBackButton = findViewById(R.id.goBackButton);
-        clearAllButton = findViewById(R.id.clearAllButton);
 
-        goBackButton.setOnClickListener(this);
-        clearAllButton.setOnClickListener(this);
+        back = findViewById(R.id.back);
+        clear_all = findViewById(R.id.clear_all);
+        total = findViewById(R.id.total_value);
+        history_list = findViewById(R.id.history_list);
+
+        back.setOnClickListener(this);
+        clear_all.setOnClickListener(this);
+
+        /* SimpleCursorAdapter */
+        /* Database manager */
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back:
+                onBackPressed();
+                break;
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onClick(View view)
-    {
-        if(view.getId()==goBackButton.getId())
-        {
-            Intent intent = new Intent(this, GasFinder.class);
-            startActivity(intent);
+            case R.id.clear_all:
+                /* Clear the list view */
+                break;
         }
-        else if(view.getId()==clearAllButton.getId())
-        {
+    }
 
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /* Close the database */
     }
 }

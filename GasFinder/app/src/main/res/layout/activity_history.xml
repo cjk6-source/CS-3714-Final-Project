@@ -4,63 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context="com.example.michael.gasfinder.HistoryActivity">
-    <ScrollView
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/clear_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="Clear All" />
+
+    <TextView
+        android:id="@+id/total_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:text="Total: $"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/total_value"
+        android:textSize="25sp"
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/total_text"
+        android:layout_toEndOf="@+id/total_text"/>
+
+    <ListView
+        android:id="@+id/history_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:orientation="horizontal"
-                 android:weightSum="2">
-                 <Button
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:id="@+id/goBackButton"
-                     android:text="Submit"
-                     android:layout_weight="1"/>
-
-                 <Button
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:id="@+id/clearAllButton"
-                     android:text="Submit"
-                     android:layout_weight="1"/>
-             </LinearLayout>
-
-             //Total
-             <LinearLayout
-                 android:orientation="horizontal"
-                 android:layout_height="match_parent"
-                 android:layout_width="match_parent">
-                 <TextView
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="Total: $"
-                     android:textSize="25dp" />
-
-                 <TextView
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="0"
-                     android:textSize="25dp"
-                     android:id="@+id/totalTextView"/>
-
-             </LinearLayout>
-
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:orientation="vertical"
-                 android:id="@+id/historySummaryLL">
-             </LinearLayout>
-
-         </LinearLayout>
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/total_text"/>
 </RelativeLayout>
