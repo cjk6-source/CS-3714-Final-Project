@@ -52,8 +52,12 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
         databaseManager = new DatabaseManager(this);
         databaseManager.open();
+
+        Cursor cursor = databaseManager.getAllRecords();
+        sum(cursor);
+
         adapter = new SimpleCursorAdapter(this, R.layout.custom_history_row,
-                databaseManager.getAllRecords(), fromColumns, toViews, 0);
+                cursor, fromColumns, toViews, 0);
         history_list.setAdapter(adapter);
     }
 
@@ -67,12 +71,14 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.clear_all:
                 /*databaseManager.insertHistoryInfo("Test Station",
                         "841 Claytor Sq",
-                        "05/10/1996",
+                        "05/10/1995",
                         35.5,
                         "Premium",
                         3.4);*/
                 databaseManager.deleteAll();
-                adapter.changeCursor(databaseManager.getAllRecords());
+                Cursor cursor = databaseManager.getAllRecords();
+                sum(cursor);
+                adapter.changeCursor(cursor);
                 adapter.notifyDataSetChanged();
                 break;
         }
@@ -82,5 +88,14 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     protected void onDestroy() {
         super.onDestroy();
         databaseManager.close();
+    }
+
+    public void sum(Cursor cursor) {
+        double sum = 0;
+        while(cursor.moveToNext()) {
+            sum = sum + cursor.getDouble(4);
+        }
+        total.setText("" + sum);
+        cursor.moveToFirst();
     }
 }
