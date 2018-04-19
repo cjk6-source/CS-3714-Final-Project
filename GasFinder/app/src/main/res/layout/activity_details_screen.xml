@@ -21,7 +21,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:onClick="onBackToList"
-                android:text="<--" />
+                android:text="Go Back"/>
 
             <Button
                 android:id="@+id/log"
@@ -29,7 +29,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:onClick="onLog"
-                android:text="To Logger" />
+                android:text="To Logger"/>
         </RelativeLayout>
 
         <LinearLayout
