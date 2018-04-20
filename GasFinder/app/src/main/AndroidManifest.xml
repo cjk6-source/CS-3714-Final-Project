@@ -31,6 +31,7 @@
             android:enabled="true"
             android:exported="true" />
 
+        <activity android:name=".DetailsScreen"/>
         <activity android:name=".LogActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".DetailActivity" />

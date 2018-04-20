@@ -28,7 +28,6 @@ public class GPSManager implements LocationListener{
         {
             locationManager.requestLocationUpdates(LOCATIONPROVIDER, 5000, 5,this);
             currentLocation = locationManager.getLastKnownLocation(LOCATIONPROVIDER);
-            detailsScreen.updateCurrentLocation(/*currentLocation*/);
         }
     }
 
@@ -50,7 +49,6 @@ public class GPSManager implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
         this.currentLocation = location;
-        detailsScreen.updateCurrentLocation(/*currentLocation*/);
     }
 
     @Override
