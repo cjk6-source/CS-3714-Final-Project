@@ -135,7 +135,8 @@ public class ListActivity extends AppCompatActivity {
                             station.getDistance(),
                             fuelType,
                             station.getFuelPrice(fuelType),
-                            station.getAddress());
+                            station.getAddress(),
+                            i);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -144,7 +145,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void addRow(
-            String name, String distance, String fuelType, String price, String address) {
+            String name, String distance, String fuelType, String price, String address, int index) {
         LinearLayout outsideLayout = new LinearLayout(this);
 
         LinearLayout.LayoutParams outsideParams = new LinearLayout.LayoutParams(
@@ -154,8 +155,8 @@ public class ListActivity extends AppCompatActivity {
         outsideLayout.setLayoutParams(outsideParams);
         outsideLayout.setBackgroundResource(R.drawable.fragment_style);
         outsideLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-        LinearLayout textLayout = addText(name, distance, fuelType, price, address);
+        int s = index;
+        LinearLayout textLayout = addText(name, distance, fuelType, price, address, s);
 
         LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(
                 350, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
@@ -166,6 +167,7 @@ public class ListActivity extends AppCompatActivity {
         gasStationIcon.setAdjustViewBounds(true);
         gasStationIcon.setLayoutParams(imageParams);
         gasStationIcon.setImageResource(setImageView(name));
+        nearbyStations.get(s).setMarker(setImageView(name));
         outsideLayout.addView(gasStationIcon);
         outsideLayout.addView(textLayout);
 
@@ -173,7 +175,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private LinearLayout addText(
-            String name, String distance, String fuelType, String price, String address) {
+            String name, String distance, String fuelType, String price, final String address, int index) {
         LinearLayout textLayout = new LinearLayout(this);
 
         LinearLayout.LayoutParams textLayoutParams = new LinearLayout.LayoutParams(
@@ -182,7 +184,7 @@ public class ListActivity extends AppCompatActivity {
         textLayoutParams.setMargins(30, 0, 0, 0);
         textLayout.setLayoutParams(textLayoutParams);
         textLayout.setOrientation(LinearLayout.VERTICAL);
-
+        final int z = index;
         TextView stationName = new TextView(this);
         stationName.setText(name);
         textLayout.addView(stationName);
@@ -196,7 +198,21 @@ public class ListActivity extends AppCompatActivity {
         addressText.setText(address);
         textLayout.addView(addressText);
 
+        textLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewStation(z);
+            }
+        });
+
         return textLayout;
+    }
+
+    private void onViewStation(int z)
+    {
+        Intent intent = new Intent(this, DetailsScreen.class);
+        intent.putExtra("GAS STATION OBJECT", nearbyStations.get(z));
+        startActivity(intent);
     }
 
     private String queryFuelString(String value) {

@@ -2,11 +2,13 @@ package com.example.michael.gasfinder;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Tay on 4/17/2018.
  */
 
-public class GasStation {
+public class GasStation implements Serializable {
 
     private String reg_price, mid_price, prem_price, diesel_price;
     private String reg_date, mid_date, prem_date, diesel_date;
@@ -15,6 +17,7 @@ public class GasStation {
     private String stationName;
     private String distance;
     private String region, city;
+    private int marker = 0;
 
     private int id;
 
@@ -39,6 +42,16 @@ public class GasStation {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int getMarker()
+    {
+        return marker;
+    }
+
+    public void setMarker(int num)
+    {
+        marker = num;
     }
 
     public String getFuelPrice(String type) {
