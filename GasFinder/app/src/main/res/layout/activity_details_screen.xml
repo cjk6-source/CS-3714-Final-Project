@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GasFinder">
+    tools:context="com.example.michael.gasfinder.DetailsScreen">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,16 +12,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/back_to_list"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
-                android:layout_gravity="left"
                 android:onClick="onBackToList"
-                android:text="<--" />
+                android:text="Go Back"/>
 
             <Button
                 android:id="@+id/log"
@@ -29,30 +29,26 @@
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:onClick="onLog"
-                android:text="To Logger" />
+                android:text="To Logger"/>
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/station_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="30dp">
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:layout_gravity="center"/>
 
-            <TextView
-                android:id="@+id/station_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="30sp" />
+        <TextView
+            android:id="@+id/station_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="27sp"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"/>
 
-            <TextView
-                android:id="@+id/station_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="27sp" />
-
-        </LinearLayout>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -87,30 +83,42 @@
             <TableRow android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:text="Regular: $ "
+                    android:textSize="25sp" />
+
+                <TextView
                     android:id="@+id/regular"
                     android:layout_weight="1"
-                    android:text="Regular:"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:text="Mid: $ "
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/mid"
                     android:layout_weight="1"
-                    android:text="Mid:"
                     android:textSize="25sp" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
+                    android:text="Premium: $ "
+                    android:textSize="25sp" />
+
+                <TextView
                     android:id="@+id/premium"
                     android:layout_weight="1"
-                    android:text="Premium:"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:text="Diesel: $ "
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/diesel"
                     android:layout_weight="1"
-                    android:text="Diesel:"
                     android:textSize="25sp" />
             </TableRow>
 

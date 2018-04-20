@@ -16,11 +16,11 @@ import android.support.v4.app.ActivityCompat;
 
 public class GPSService extends Service implements LocationListener{
 
-    Context myContext;
+    private Context myContext;
 
-    LocationManager locationManager;
-    String LOCATIONPROVIDER = LocationManager.GPS_PROVIDER;
-    Location currentLocation;
+    private LocationManager locationManager;
+    private String LOCATIONPROVIDER = LocationManager.GPS_PROVIDER;
+    private Location currentLocation;
 
     public GPSService() {
         //Default Constructor;

@@ -15,6 +15,7 @@ public class GasFinder extends AppCompatActivity {
     Button toHistory;
     Button toLogger;
     Button toList;
+    Button toMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class GasFinder extends AppCompatActivity {
         toHistory = findViewById(R.id.toHistory);
         toLogger = findViewById(R.id.toLogger);
         toList = findViewById(R.id.toList);
+        toMap = findViewById(R.id.toMap);
     }
 
     public void onClickList(View view)
@@ -41,6 +43,12 @@ public class GasFinder extends AppCompatActivity {
     public void onClickHistory(View view)
     {
         Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickMap(View view)
+    {
+        Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
 

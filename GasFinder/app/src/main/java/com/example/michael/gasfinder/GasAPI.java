@@ -1,15 +1,18 @@
 package com.example.michael.gasfinder;
 
-import android.content.Intent;
 import android.location.Location;
-import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -47,6 +50,9 @@ public class GasAPI implements Response.Listener<String>, Response.ErrorListener
 
         StringRequest request =
                 new StringRequest(Request.Method.GET, formatted, this, this);
+        int x=2;// retry count
+        request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 48,
+                x, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
     }
 
@@ -57,6 +63,12 @@ public class GasAPI implements Response.Listener<String>, Response.ErrorListener
 
     @Override
     public void onResponse(String response) {
-        Log.d("yee", response);
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("stations");
+            listActivity.displayStations(jsonArray);
+        } catch (JSONException je) {
+            je.printStackTrace();
+        }
     }
 }

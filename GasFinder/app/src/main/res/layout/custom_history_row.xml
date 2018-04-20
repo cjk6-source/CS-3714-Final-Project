@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/station_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gas Station Name"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/dollar_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/amount_spent"
+        android:text="$"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/amount_spent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="0"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/station_name"
+        android:text="Address"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/address"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address"
+        android:text="Date"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/dollar_sign_ppg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/date"
+        android:layout_toStartOf="@+id/ppg"/>
+
+    <TextView
+        android:id="@+id/ppg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/date"
+        android:layout_toStartOf="@+id/per_gal"/>
+
+    <TextView
+        android:id="@+id/per_gal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/gal"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/date"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

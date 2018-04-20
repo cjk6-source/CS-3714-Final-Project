@@ -1,20 +1,27 @@
 package com.example.michael.gasfinder;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LevelListDrawable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class DetailActivity extends FragmentActivity implements OnMapReadyCallback {
+public class DetailsScreen extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     GPSManager gpsManager;
@@ -28,17 +35,18 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
     double lat;
     double lon;
     LatLng latLng;
+    GasStation currentStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_details_screen);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        gpsManager = new GPSManager(this);
+        //gpsManager = new GPSManager(this);
 
         recenter = (Button) findViewById(R.id.recenter);
         station_name = (TextView) findViewById(R.id.station_name);
@@ -49,16 +57,18 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
         diesel = (TextView) findViewById(R.id.diesel);
 
         Intent intent = getIntent();
-        //station_name.setText(intent.getStringExtra(STATION_NAME));
-        //station_address.setText(intent.getStringExtra(STATION_ADDRESS));
-        //regular.setText("Regular: " + intent.getStringExtra(REGULAR));
-        //mid.setText("Mid: " + intent.getStringExtra(MID));
-        //premium.setText("Premium: " + intent.getStringExtra(PREMIUM));
-        //diesel.setText("Diesel: " + intent.getStringExtra(DIESEL));
-        //lat = intent.getDoubleExtra("LATITUDE", 0);
-        //lon = intent.getDoubleExtra("LONGITUDE", 0);
+        currentStation = (GasStation) intent.getSerializableExtra("GAS STATION OBJECT");
+        station_name.setText(currentStation.getStationName());
+        station_address.setText(currentStation.getAddress() + " " + currentStation.getCity() + ", " + currentStation.getRegion());
+        regular.setText(currentStation.getReg_price());
+        mid.setText(currentStation.getMid_price());
+        premium.setText(currentStation.getPrem_price());
+        diesel.setText(currentStation.getDiesel_price());
+        lat = currentStation.getLatitude();
+        lon = currentStation.getLongitude();
+
         latLng = new LatLng(lat, lon);
-        //updateCurrentLocation();
+
     }
 
     public void onRecenter(View view)
@@ -66,9 +76,23 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
     }
 
+    public void onMove()
+    {
+        mMap.clear();
+
+        int height = 150;
+        int width = 150;
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(currentStation.getMarker());
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+        mMap.addMarker(new MarkerOptions().position(latLng).title(station_name.getText().toString()))
+                .setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+    }
+
     public void onLog(View view)
     {
-        Intent intent = new Intent(/*this, LogActivity.class*/);
+        Intent intent = new Intent(this, LogActivity.class);
         startActivity(intent);
     }
 
@@ -85,7 +109,6 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        gpsManager.unregister();
     }
 
 
@@ -102,11 +125,6 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-    }
-
-    public void updateCurrentLocation()
-    {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        onMove();
     }
 }
-
