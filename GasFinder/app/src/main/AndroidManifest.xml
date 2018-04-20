@@ -34,7 +34,7 @@
         <activity android:name=".LogActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".MapActivity"/>
     </application>
 
 </manifest>
