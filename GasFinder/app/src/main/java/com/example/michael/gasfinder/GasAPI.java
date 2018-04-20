@@ -23,15 +23,15 @@ import java.util.List;
 
 public class GasAPI implements Response.Listener<String>, Response.ErrorListener {
 
-    private ListActivity listActivity;
+    private GasFinder gasFinder;
     private RequestQueue queue;
 
     private final String APIKEY = "83j74qb9so";
     private final String SITEDOMAIN = "http://api.mygasfeed.com";
 
-    public GasAPI(ListActivity act) {
-        listActivity = act;
-        queue = Volley.newRequestQueue(listActivity);
+    public GasAPI(GasFinder act) {
+        gasFinder = act;
+        queue = Volley.newRequestQueue(gasFinder);
     }
 
     public void getNearbyStations(Location location, int distance, String fuelType, String sortType) {
@@ -66,7 +66,7 @@ public class GasAPI implements Response.Listener<String>, Response.ErrorListener
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = jsonObject.getJSONArray("stations");
-            listActivity.displayStations(jsonArray);
+            gasFinder.saveStations(jsonArray);
         } catch (JSONException je) {
             je.printStackTrace();
         }

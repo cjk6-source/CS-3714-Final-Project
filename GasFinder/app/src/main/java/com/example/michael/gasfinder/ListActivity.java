@@ -1,20 +1,9 @@
 package com.example.michael.gasfinder;
 
 import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.location.LocationManager;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,41 +13,18 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class ListActivity extends AppCompatActivity {
-    private Location myLocation;
-    private GasAPI gasAPI;
-    private GPSBinder binder;
+
     private LinearLayout gasList;
-    private ArrayList<GasStation> nearbyStations;
-
-    private final String INITIALIZE_STATUS = "initialization_status";
-
-    boolean isBound;
-    boolean isInitialized;
-    private Location currentLocation;
 
     private Spinner fuelSpinner, orderSpinner;
     private TextView radius;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        ActivityCompat.requestPermissions(this, new String[] {
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        }, 0);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        gasAPI = new GasAPI(this);
-        binder = new GPSBinder(this);
         fuelSpinner = findViewById(R.id.fuelSpinner);
         orderSpinner = findViewById(R.id.orderSpinner);
         gasList = findViewById(R.id.gas_items);
@@ -75,51 +41,6 @@ public class ListActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_dropdown_item, orderTypes
         );
         orderSpinner.setAdapter(orderAdapter);
-
-        if (savedInstanceState != null) {
-            isInitialized = savedInstanceState.getBoolean(INITIALIZE_STATUS);
-        }
-
-        nearbyStations = new ArrayList<>();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            isBound = binder.bindGPSService();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (isBound) {
-            binder.unBindGPSService();
-            isBound = false;
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isInitialized && !isBound) {
-            binder.bindGPSService();
-        }
-    }
-
-    public void findStations(View view) {
-        if (isBound) {
-            gasList.removeAllViews();
-            currentLocation = binder.getSystemLocation();
-            int distance = Integer.parseInt(radius.getText().toString());
-            String fuelType = fuelSpinner.getSelectedItem().toString();
-            String queryType = queryFuelString(fuelType);
-            String sortType = orderSpinner.getSelectedItem().toString();
-            gasAPI.getNearbyStations(currentLocation, distance, queryType, sortType);
-        }
     }
 
     public void displayStations(JSONArray arr) {
@@ -128,7 +49,7 @@ public class ListActivity extends AppCompatActivity {
             try {
                 JSONObject o = arr.getJSONObject(i);
                 GasStation station = new GasStation(o);
-                nearbyStations.add(station);
+
                 if (i < 20) {
                     addRow(
                             station.getStationName(),

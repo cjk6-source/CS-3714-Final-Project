@@ -18,7 +18,6 @@ public class GPSBinder {
     Context myServiceContext;
     Intent startGPSService;
 
-    boolean isInitialized;
     boolean isBound = false;
 
     public GPSBinder(Context context) {
@@ -32,6 +31,8 @@ public class GPSBinder {
         if (service != null) {
             service.register();
             isBound = true;
+            GasFinder finder = (GasFinder) myServiceContext;
+            finder.findStations();
             return true;
         }
         return isBound;
