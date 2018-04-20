@@ -24,7 +24,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class DetailsScreen extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    GPSManager gpsManager;
     Button recenter;
     TextView station_name;
     TextView station_address;
@@ -45,8 +44,6 @@ public class DetailsScreen extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        //gpsManager = new GPSManager(this);
 
         recenter = (Button) findViewById(R.id.recenter);
         station_name = (TextView) findViewById(R.id.station_name);
