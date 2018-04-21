@@ -1,6 +1,7 @@
 package com.example.michael.gasfinder;
 
 import org.json.JSONObject;
+import java.util.Comparator;
 
 import java.io.Serializable;
 
@@ -44,16 +45,6 @@ public class GasStation implements Serializable {
         }
     }
 
-    public int getMarker()
-    {
-        return marker;
-    }
-
-    public void setMarker(int num)
-    {
-        marker = num;
-    }
-
     public String getFuelPrice(String type) {
         switch (type) {
             case "Unleaded":
@@ -67,6 +58,22 @@ public class GasStation implements Serializable {
             default:
                 return "Fuel not found";
         }
+    }
+
+    public double getDoubleDistance() {
+        String[] split = distance.split("\\s+");
+
+        return Double.parseDouble(split[1]);
+    }
+
+    public int getMarker()
+    {
+        return marker;
+    }
+
+    public void setMarker(int num)
+    {
+        marker = num;
     }
 
     public String getReg_price() {

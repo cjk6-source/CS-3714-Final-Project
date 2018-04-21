@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.function.DoubleUnaryOperator;
 
 public class GasFinder extends AppCompatActivity {
 
@@ -27,7 +28,9 @@ public class GasFinder extends AppCompatActivity {
 
     private GPSBinder binder;
     private final String INITIALIZE_STATUS = "initialization_status";
-    public final String NEARBY_STATIONS = "nearby_stations";
+    public static final String NEARBY_STATIONS = "nearby_stations";
+    public static final String CURRENT_LATITUDE = "current_latitude";
+    public static final String CURRENT_LONGITUDE = "current_longitude";
 
     Button toHistory;
     Button toLogger;
@@ -91,7 +94,9 @@ public class GasFinder extends AppCompatActivity {
 
     public void onClickList(View view){
         Intent intent = new Intent(this, ListActivity.class);
-        intent.putExtra(NEARBY_STATIONS, nearbyStations);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(NEARBY_STATIONS, nearbyStations);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
@@ -107,7 +112,11 @@ public class GasFinder extends AppCompatActivity {
 
     public void onClickMap(View view) {
         Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(NEARBY_STATIONS, nearbyStations);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(NEARBY_STATIONS, nearbyStations);
+        intent.putExtras(bundle);
+        intent.putExtra(CURRENT_LATITUDE, currentLocation.getLatitude());
+        intent.putExtra(CURRENT_LONGITUDE, currentLocation.getLongitude());
 
         startActivity(intent);
     }

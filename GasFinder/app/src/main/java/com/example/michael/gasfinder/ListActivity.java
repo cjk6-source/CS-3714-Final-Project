@@ -1,8 +1,6 @@
 package com.example.michael.gasfinder;
 
-import android.Manifest;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
     private LinearLayout gasList;
+    ArrayList<GasStation> nearbyStations;
 
     private Spinner fuelSpinner, orderSpinner;
     private TextView radius;
@@ -26,6 +24,11 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+
+        nearbyStations = (ArrayList<GasStation>) bundle.getSerializable(GasFinder.NEARBY_STATIONS);
 
         fuelSpinner = findViewById(R.id.fuelSpinner);
         orderSpinner = findViewById(R.id.orderSpinner);
@@ -43,27 +46,32 @@ public class ListActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_dropdown_item, orderTypes
         );
         orderSpinner.setAdapter(orderAdapter);
+
+        displayStations(nearbyStations);
     }
 
-    public void displayStations(JSONArray arr) {
+    public void displayStations(ArrayList<GasStation> myStations) {
+        Double distance = Double.parseDouble(radius.getText().toString());
+        String order = orderSpinner.getSelectedItem().toString();
         String fuelType = fuelSpinner.getSelectedItem().toString();
-        for (int i = 0; i < arr.length(); i++) {
-            try {
-                JSONObject o = arr.getJSONObject(i);
-                GasStation station = new GasStation(o);
 
-                if (i < 20) {
-                    addRow(
-                            station.getStationName(),
-                            station.getDistance(),
-                            fuelType,
-                            station.getFuelPrice(fuelType),
-                            station.getAddress(),
-                            i);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        ArrayList<GasStation> distanceFilter = new ArrayList<>();
+
+        for (int i = 0; i < myStations.size(); i++) {
+            if (myStations.get(i).getDoubleDistance() <= distance) {
+                distanceFilter.add(myStations.get(i));
             }
+        }
+
+        for (int i = 0; i < 20; i++) {
+            GasStation station = myStations.get(i);
+            addRow(
+                station.getStationName(),
+                station.getDistance(),
+                fuelType,
+                station.getFuelPrice(fuelType),
+                station.getAddress(),
+                i);
         }
     }
 

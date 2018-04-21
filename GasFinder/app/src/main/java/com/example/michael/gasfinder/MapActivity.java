@@ -1,5 +1,6 @@
 package com.example.michael.gasfinder;
 
+import android.content.Intent;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -26,15 +27,19 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        Intent intent = this.getIntent();
+
+        Bundle bundle = intent.getExtras();
+
+        nearbyStations = (ArrayList<GasStation>) bundle.getSerializable(GasFinder.NEARBY_STATIONS);
+        curUserLatlng = new LatLng(
+                intent.getDoubleExtra(GasFinder.CURRENT_LATITUDE, 0),
+                intent.getDoubleExtra(GasFinder.CURRENT_LONGITUDE, 0));
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        if(curUserLocation!=null)
-        {
-            curUserLatlng = new LatLng(curUserLocation.getLatitude(),curUserLocation.getLongitude());
-        }
     }
 
     @Override
