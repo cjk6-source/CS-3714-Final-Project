@@ -3,12 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
     <TextView
         android:id="@+id/station_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gas Station Name"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/image"/>
 
     <TextView
         android:id="@+id/dollar_sign"
@@ -32,7 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/station_name"
         android:text="Address"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/image"/>
 
     <TextView
         android:id="@+id/type"
@@ -49,7 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/address"
         android:text="Date"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/image"/>
 
     <TextView
         android:id="@+id/dollar_sign_ppg"

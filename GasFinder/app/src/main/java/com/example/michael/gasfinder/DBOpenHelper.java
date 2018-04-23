@@ -16,6 +16,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "gas_history";
 
     public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_IMAGE_ID = "image_id";
     public static final String COLUMN_STATION_NAME = "station_name";
     public static final String COLUMN_ADDRESS = "address";
     public static final String COLUMN_DATE = "date";
@@ -26,6 +27,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY," +
+                    COLUMN_IMAGE_ID + " INTEGER," +
                     COLUMN_STATION_NAME + " TEXT," +
                     COLUMN_ADDRESS + " TEXT," +
                     COLUMN_DATE + " TEXT," +

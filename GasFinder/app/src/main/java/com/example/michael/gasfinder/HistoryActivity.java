@@ -20,6 +20,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     SimpleCursorAdapter adapter;
 
     static final String[] fromColumns = {
+            DBOpenHelper.COLUMN_IMAGE_ID,
             DBOpenHelper.COLUMN_STATION_NAME,
             DBOpenHelper.COLUMN_TOTAL_EXPENSE,
             DBOpenHelper.COLUMN_ADDRESS,
@@ -29,12 +30,13 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     };
 
     static final int[] toViews = {
+            R.id.image,
             R.id.station_name,
             R.id.amount_spent,
             R.id.address,
             R.id.type,
             R.id.date,
-            R.id.ppg
+            R.id.ppg,
     };
 
     @Override
@@ -69,7 +71,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.clear_all:
-                /*databaseManager.insertHistoryInfo("Test Station",
+                /*databaseManager.insertHistoryInfo("7-11",
                         "841 Claytor Sq",
                         "05/10/1995",
                         35.5,
@@ -93,7 +95,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     public void sum(Cursor cursor) {
         double sum = 0;
         while(cursor.moveToNext()) {
-            sum = sum + cursor.getDouble(4);
+            sum = sum + cursor.getDouble(5);
         }
         total.setText("" + sum);
         cursor.moveToFirst();
