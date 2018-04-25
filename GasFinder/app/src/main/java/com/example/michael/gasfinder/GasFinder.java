@@ -52,6 +52,10 @@ public class GasFinder extends AppCompatActivity {
         toLogger = findViewById(R.id.toLogger);
         toList = findViewById(R.id.toList);
         toMap = findViewById(R.id.toMap);
+        toHistory.setEnabled(false);
+        toLogger.setEnabled(false);
+        toList.setEnabled(false);
+        toMap.setEnabled(false);
         gotResponse = false;
 
         nearbyStations = new ArrayList<>();
@@ -92,6 +96,10 @@ public class GasFinder extends AppCompatActivity {
             }
         }
         gotResponse = true;
+        toHistory.setEnabled(true);
+        toLogger.setEnabled(true);
+        toList.setEnabled(true);
+        toMap.setEnabled(true);
     }
 
     public void onClickList(View view){
