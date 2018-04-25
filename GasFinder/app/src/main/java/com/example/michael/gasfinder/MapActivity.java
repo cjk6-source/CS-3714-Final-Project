@@ -78,8 +78,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public boolean onMarkerClick(final Marker marker) {
         boolean started = false;
-        Log.d("Marker position lat: ", String.valueOf(marker.getPosition().latitude));
-        Log.d("Marker position long: ", String.valueOf(marker.getPosition().longitude));
+        //Log.d("Marker position lat: ", String.valueOf(marker.getPosition().latitude));
+        //Log.d("Marker position long: ", String.valueOf(marker.getPosition().longitude));
         if(nearbyStations !=  null)
         {
             for (int i = 0; i < nearbyStations.size(); i++)
@@ -87,7 +87,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
                 if (nearbyStations.get(i).getLatitude() == marker.getPosition().latitude && nearbyStations.get(i).getLongitude() == marker.getPosition().longitude && !started)
                 {
                     started = true;
-                    Log.d("Station Name: ", nearbyStations.get(i).getStationName());
+                    //Log.d("Station Name: ", nearbyStations.get(i).getStationName());
                     nearbyStations.get(i).setMarker(setImageView(nearbyStations.get(i).getStationName()));
                     Intent intent = new Intent(this, DetailsScreen.class);
                     intent.putExtra("GAS STATION OBJECT", nearbyStations.get(i));
