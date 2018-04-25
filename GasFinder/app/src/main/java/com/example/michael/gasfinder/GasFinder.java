@@ -40,10 +40,7 @@ public class GasFinder extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        }, 0);
+
     }
 
     @Override
@@ -58,6 +55,11 @@ public class GasFinder extends AppCompatActivity {
         gotResponse = false;
 
         nearbyStations = new ArrayList<>();
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        }, 0);
 
         gasAPI = new GasAPI(this);
         binder = new GPSBinder(this);
@@ -124,7 +126,9 @@ public class GasFinder extends AppCompatActivity {
     // this HAS to finish before sending to listings screen
     public void findStations() {
             currentLocation = binder.getSystemLocation();
-            gasAPI.getNearbyStations(currentLocation, 20, "reg", "distance");
+            if (currentLocation != null) {
+                gasAPI.getNearbyStations(currentLocation, 20, "reg", "distance");
+            }
     }
 
     @Override
