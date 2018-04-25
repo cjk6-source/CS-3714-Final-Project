@@ -1,5 +1,8 @@
 package com.example.michael.gasfinder;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import org.json.JSONObject;
 import java.util.Comparator;
 
@@ -62,8 +65,7 @@ public class GasStation implements Serializable {
 
     public double getDoubleDistance() {
         String[] split = distance.split("\\s+");
-
-        return Double.parseDouble(split[1]);
+        return Double.parseDouble(split[0]);
     }
 
     public int getMarker()

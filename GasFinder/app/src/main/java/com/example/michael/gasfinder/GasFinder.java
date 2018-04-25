@@ -121,6 +121,7 @@ public class GasFinder extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // this HAS to finish before sending to listings screen
     public void findStations() {
             currentLocation = binder.getSystemLocation();
             gasAPI.getNearbyStations(currentLocation, 20, "reg", "distance");

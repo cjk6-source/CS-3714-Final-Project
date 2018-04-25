@@ -47,31 +47,38 @@ public class ListActivity extends AppCompatActivity {
         );
         orderSpinner.setAdapter(orderAdapter);
 
+
+        displayStations(nearbyStations);
+    }
+
+    public void findStations(View view) {
         displayStations(nearbyStations);
     }
 
     public void displayStations(ArrayList<GasStation> myStations) {
-        Double distance = Double.parseDouble(radius.getText().toString());
-        String order = orderSpinner.getSelectedItem().toString();
-        String fuelType = fuelSpinner.getSelectedItem().toString();
+        if (myStations.size() != 0) {
+            Double distance = Double.parseDouble(radius.getText().toString());
+            String order = orderSpinner.getSelectedItem().toString();
+            String fuelType = fuelSpinner.getSelectedItem().toString();
 
-        ArrayList<GasStation> distanceFilter = new ArrayList<>();
+            ArrayList<GasStation> distanceFilter = new ArrayList<>();
 
-        for (int i = 0; i < myStations.size(); i++) {
-            if (myStations.get(i).getDoubleDistance() <= distance) {
-                distanceFilter.add(myStations.get(i));
+            for (int i = 0; i < myStations.size(); i++) {
+                if (myStations.get(i).getDoubleDistance() <= distance) {
+                    distanceFilter.add(myStations.get(i));
+                }
             }
-        }
 
-        for (int i = 0; i < 20; i++) {
-            GasStation station = myStations.get(i);
-            addRow(
-                station.getStationName(),
-                station.getDistance(),
-                fuelType,
-                station.getFuelPrice(fuelType),
-                station.getAddress(),
-                i);
+            for (int i = 0; i < 20; i++) {
+                GasStation station = myStations.get(i);
+                addRow(
+                        station.getStationName(),
+                        station.getDistance(),
+                        fuelType,
+                        station.getFuelPrice(fuelType),
+                        station.getAddress(),
+                        i);
+            }
         }
     }
 
@@ -123,7 +130,7 @@ public class ListActivity extends AppCompatActivity {
         travelDistance.setText("Distance: " + distance);
         textLayout.addView(travelDistance);
         TextView typePrice = new TextView(this);
-        typePrice.setText(fuelType + ": $" + price );
+        typePrice.setText(fuelType + ": $" + price);
         textLayout.addView(typePrice);
         TextView addressText = new TextView(this);
         addressText.setText(address);
@@ -139,8 +146,7 @@ public class ListActivity extends AppCompatActivity {
         return textLayout;
     }
 
-    private void onViewStation(int z)
-    {
+    private void onViewStation(int z) {
         Intent intent = new Intent(this, DetailsScreen.class);
         intent.putExtra("GAS STATION OBJECT", nearbyStations.get(z));
         startActivity(intent);
