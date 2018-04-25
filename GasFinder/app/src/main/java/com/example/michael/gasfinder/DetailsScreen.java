@@ -90,6 +90,7 @@ public class DetailsScreen extends FragmentActivity implements OnMapReadyCallbac
     public void onLog(View view)
     {
         Intent intent = new Intent(this, LogActivity.class);
+        intent.putExtra("GAS STATION OBJECT", currentStation);
         startActivity(intent);
     }
 

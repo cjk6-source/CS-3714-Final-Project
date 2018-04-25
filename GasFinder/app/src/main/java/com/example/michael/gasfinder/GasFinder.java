@@ -38,12 +38,6 @@ public class GasFinder extends AppCompatActivity {
     Button toMap;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_finder);
@@ -52,6 +46,7 @@ public class GasFinder extends AppCompatActivity {
         toLogger = findViewById(R.id.toLogger);
         toList = findViewById(R.id.toList);
         toMap = findViewById(R.id.toMap);
+
         gotResponse = false;
 
         nearbyStations = new ArrayList<>();
