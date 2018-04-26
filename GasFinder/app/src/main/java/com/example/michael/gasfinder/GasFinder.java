@@ -38,15 +38,6 @@ public class GasFinder extends AppCompatActivity {
     Button toMap;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        }, 0);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_finder);
@@ -55,9 +46,18 @@ public class GasFinder extends AppCompatActivity {
         toLogger = findViewById(R.id.toLogger);
         toList = findViewById(R.id.toList);
         toMap = findViewById(R.id.toMap);
+        toHistory.setEnabled(false);
+        toLogger.setEnabled(false);
+        toList.setEnabled(false);
+        toMap.setEnabled(false);
         gotResponse = false;
 
         nearbyStations = new ArrayList<>();
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        }, 0);
 
         gasAPI = new GasAPI(this);
         binder = new GPSBinder(this);
@@ -92,6 +92,10 @@ public class GasFinder extends AppCompatActivity {
             }
         }
         gotResponse = true;
+        toHistory.setEnabled(true);
+        toLogger.setEnabled(true);
+        toList.setEnabled(true);
+        toMap.setEnabled(true);
     }
 
     public void onClickList(View view){
@@ -126,7 +130,9 @@ public class GasFinder extends AppCompatActivity {
     // this HAS to finish before sending to listings screen
     public void findStations() {
             currentLocation = binder.getSystemLocation();
-            gasAPI.getNearbyStations(currentLocation, 20, "reg", "distance");
+            if (currentLocation != null) {
+                gasAPI.getNearbyStations(currentLocation, 20, "reg", "distance");
+            }
     }
 
     @Override

@@ -90,6 +90,7 @@ public class DetailsScreen extends FragmentActivity implements OnMapReadyCallbac
     public void onLog(View view)
     {
         Intent intent = new Intent(this, LogActivity.class);
+<<<<<<< HEAD
 
         intent.putExtra("Station_Name", station_name.getText().toString());
         intent.putExtra("Station_Address", station_address.getText().toString());
@@ -106,6 +107,9 @@ public class DetailsScreen extends FragmentActivity implements OnMapReadyCallbac
         if (!diesel.getText().toString().equalsIgnoreCase("N/A")) {
             intent.putExtra("Diesel_Price", Double.parseDouble(diesel.getText().toString()));
         }
+=======
+        intent.putExtra("GAS STATION OBJECT", currentStation);
+>>>>>>> 56199905458cdaa1a05a3359431173d52c5dde5b
         startActivity(intent);
 
     }

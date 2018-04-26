@@ -77,15 +77,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        Log.d("Marker position lat: ", String.valueOf(marker.getPosition().latitude));
-        Log.d("Marker position long: ", String.valueOf(marker.getPosition().longitude));
+        boolean started = false;
+        //Log.d("Marker position lat: ", String.valueOf(marker.getPosition().latitude));
+        //Log.d("Marker position long: ", String.valueOf(marker.getPosition().longitude));
         if(nearbyStations !=  null)
         {
             for (int i = 0; i < nearbyStations.size(); i++)
             {
-                if (nearbyStations.get(i).getLatitude() == marker.getPosition().latitude && nearbyStations.get(i).getLongitude() == marker.getPosition().longitude)
+                if (nearbyStations.get(i).getLatitude() == marker.getPosition().latitude && nearbyStations.get(i).getLongitude() == marker.getPosition().longitude && !started)
                 {
+                    started = true;
                     //Log.d("Station Name: ", nearbyStations.get(i).getStationName());
+                    nearbyStations.get(i).setMarker(setImageView(nearbyStations.get(i).getStationName()));
                     Intent intent = new Intent(this, DetailsScreen.class);
                     intent.putExtra("GAS STATION OBJECT", nearbyStations.get(i));
                     startActivity(intent);
@@ -93,5 +96,36 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
             }
         }
         return true;
+    }
+
+    private Integer setImageView(String stationName) {
+        switch (stationName) {
+            case "Fasmart":
+                return R.drawable.fasmartlogo;
+            case "7-Eleven":
+                return R.drawable.sevenelevenlogo;
+            case "Liberty":
+                return R.drawable.libertylogo;
+            case "BP":
+                return R.drawable.bplogo;
+            case "Sunoco":
+                return R.drawable.suncologo;
+            case "Wilcohess":
+                return R.drawable.hesslogo;
+            case "Marathon":
+                return R.drawable.marathonlogo;
+            case "Sheetz":
+                return R.drawable.sheetzlogo;
+            case "Exxon":
+                return R.drawable.exxonlogo;
+            case "Valero":
+                return R.drawable.valerologo;
+            case "Kroger":
+                return R.drawable.krogerlogo;
+            case "Citgo":
+                return R.drawable.citigologo;
+            default:
+                return R.drawable.defaultlogo;
+        }
     }
 }
