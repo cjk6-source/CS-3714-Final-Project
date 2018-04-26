@@ -64,40 +64,30 @@ public class DatabaseManager {
 
     public int getImageID(String stationName) {
         switch (stationName) {
-            case "Arco":
-                return R.drawable.arcologo;
-            case "BP":
-                return R.drawable.bplogo;
-            case "Chevron":
-                return R.drawable.chevronlogo;
-            case "Citgo":
-                return R.drawable.citigologo;
-            case "Exxon":
-                return R.drawable.exxonlogo;
-            case "Fast Mart":
+            case "Fasmart":
                 return R.drawable.fasmartlogo;
-            case "Hess":
-                return R.drawable.hesslogo;
-            case "Kroger":
-                return R.drawable.krogerlogo;
+            case "7-Eleven":
+                return R.drawable.sevenelevenlogo;
             case "Liberty":
                 return R.drawable.libertylogo;
-            case "Marathon":
-                return R.drawable.marathonlogo;
-            case "Mobil":
-                return R.drawable.mobillogo;
-            case "7-11":
-                return R.drawable.sevenelevenlogo;
-            case "Sheetz":
-                return R.drawable.sheetzlogo;
-            case "Shell":
-                return R.drawable.shelllogo;
+            case "BP":
+                return R.drawable.bplogo;
             case "Sunoco":
                 return R.drawable.suncologo;
-            case "Texaco":
-                return R.drawable.texacologo;
+            case "Wilcohess":
+                return R.drawable.hesslogo;
+            case "Marathon":
+                return R.drawable.marathonlogo;
+            case "Sheetz":
+                return R.drawable.sheetzlogo;
+            case "Exxon":
+                return R.drawable.exxonlogo;
             case "Valero":
                 return R.drawable.valerologo;
+            case "Kroger":
+                return R.drawable.krogerlogo;
+            case "Citgo":
+                return R.drawable.citigologo;
             default:
                 return R.drawable.defaultlogo;
         }

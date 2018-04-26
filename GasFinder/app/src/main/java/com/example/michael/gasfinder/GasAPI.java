@@ -35,25 +35,27 @@ public class GasAPI implements Response.Listener<String>, Response.ErrorListener
     }
 
     public void getNearbyStations(Location location, int distance, String fuelType, String sortType) {
-        Double latitude = location.getLatitude();
-        Double longitude = location.getLongitude();
+        if (location != null) {
+            Double latitude = location.getLatitude();
+            Double longitude = location.getLongitude();
 
-        String mylat = latitude.toString();
-        String mylong = longitude.toString();
-        String myDistance = Integer.toString(distance);
+            String mylat = latitude.toString();
+            String mylong = longitude.toString();
+            String myDistance = Integer.toString(distance);
 
 
-        String formatted;
-        //stations/radius/(Latitude)/(Longitude)/(distance)/(fuel type)/(sort by)/apikey.json
-        formatted = String.format("%s/stations/radius/%s/%s/%s/%s/%s/%s.json",
-                SITEDOMAIN, mylat, mylong, myDistance, fuelType, sortType, APIKEY);
+            String formatted;
+            //stations/radius/(Latitude)/(Longitude)/(distance)/(fuel type)/(sort by)/apikey.json
+            formatted = String.format("%s/stations/radius/%s/%s/%s/%s/%s/%s.json",
+                    SITEDOMAIN, mylat, mylong, myDistance, fuelType, sortType, APIKEY);
 
-        StringRequest request =
-                new StringRequest(Request.Method.GET, formatted, this, this);
-        int x=2;// retry count
-        request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 48,
-                x, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(request);
+            StringRequest request =
+                    new StringRequest(Request.Method.GET, formatted, this, this);
+            int x = 2;// retry count
+            request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 48,
+                    x, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            queue.add(request);
+        }
     }
 
     @Override

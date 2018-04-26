@@ -49,6 +49,8 @@ public class ListActivity extends AppCompatActivity {
 
 
         displayStations(nearbyStations);
+       // displayStations(nearbyStations);
+
     }
 
     public void findStations(View view) {

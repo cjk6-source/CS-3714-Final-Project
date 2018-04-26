@@ -7,4 +7,8 @@
     <string name="find_stations">Find Stations!</string>
     <string name="default_distance">10</string>
     <string name="next">Next Page ></string>
+    <string name="Regular">Regular</string>
+    <string name="Premium">Premium</string>
+    <string name="Plus">Plus</string>
+    <string name="Diesel">Diesel</string>
 </resources>

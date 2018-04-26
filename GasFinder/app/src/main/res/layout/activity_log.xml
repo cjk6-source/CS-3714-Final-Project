@@ -27,9 +27,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/totalInput"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:text="0"
-                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890."
                     android:textSize="25dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,38 +51,73 @@
                 android:layout_width="match_parent"
                 android:weightSum="4">
 
-                <CheckBox
-                    android:id="@+id/regularCB"
-                    android:layout_width="0dp"
-                    android:layout_height="90dp"
-                    android:drawablePadding="20dp"
-                    android:layout_weight = "1"
-                    android:text="Regular"
-                    android:onClick="onCheckboxClicked"/>
-                <CheckBox
-                    android:id="@+id/plusCB"
-                    android:layout_width="0dp"
-                    android:layout_height="90dp"
-                    android:drawablePadding="20dp"
-                    android:layout_weight = "1"
-                    android:text="Plus"
-                    android:onClick="onCheckboxClicked"/>
-                <CheckBox
-                    android:id="@+id/premiumCB"
-                    android:layout_width="0dp"
-                    android:layout_height="90dp"
-                    android:drawablePadding="20dp"
-                    android:layout_weight = "1"
-                    android:text="Premium"
-                    android:onClick="onCheckboxClicked"/>
-                <CheckBox
-                    android:id="@+id/dieselCB"
-                    android:layout_width="0dp"
-                    android:layout_height="90dp"
-                    android:drawablePadding="20dp"
-                    android:layout_weight = "1"
-                    android:text="Diesel"
-                    android:onClick="onCheckboxClicked"/>
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioGroup"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/radioRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Regular"
+                        android:checked="true"
+                        />
+                    <RadioButton
+                        android:id="@+id/radioPlus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Plus"
+                        />
+                    <RadioButton
+                        android:id="@+id/radioPremium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Premium"
+                        />
+                    <RadioButton
+                        android:id="@+id/radioDiesel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Diesel"
+                        />
+
+                </RadioGroup>
+
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/regularCB"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="90dp"-->
+                    <!--android:drawablePadding="20dp"-->
+                    <!--android:layout_weight = "1"-->
+                    <!--android:text="Regular"-->
+                    <!--android:onClick="onCheckboxClicked"/>-->
+                <!--<CheckBox-->
+                    <!--android:id="@+id/plusCB"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="90dp"-->
+                    <!--android:drawablePadding="20dp"-->
+                    <!--android:layout_weight = "1"-->
+                    <!--android:text="Plus"-->
+                    <!--android:onClick="onCheckboxClicked"/>-->
+                <!--<CheckBox-->
+                    <!--android:id="@+id/premiumCB"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="90dp"-->
+                    <!--android:drawablePadding="20dp"-->
+                    <!--android:layout_weight = "1"-->
+                    <!--android:text="Premium"-->
+                    <!--android:onClick="onCheckboxClicked"/>-->
+                <!--<CheckBox-->
+                    <!--android:id="@+id/dieselCB"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="90dp"-->
+                    <!--android:drawablePadding="20dp"-->
+                    <!--android:layout_weight = "1"-->
+                    <!--android:text="Diesel"-->
+                    <!--android:onClick="onCheckboxClicked"/>-->
             </LinearLayout>
 
             //Cost Per Gal
@@ -94,9 +129,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/perGalInput"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:text="0"
-                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890."
                     android:textSize="25dp"/>
                 <TextView
                     android:layout_width="wrap_content"

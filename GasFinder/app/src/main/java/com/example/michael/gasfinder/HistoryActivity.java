@@ -9,6 +9,10 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button back;
@@ -39,6 +43,13 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             R.id.ppg,
     };
 
+    String station_name;
+    String station_addres;
+    String purchase_date;
+    double purchase_total;
+    String fuel_type;
+    Double gallons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +66,25 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         databaseManager = new DatabaseManager(this);
         databaseManager.open();
 
+
+
+        if ((station_name = getIntent().getStringExtra("Station_Name")) != null)
+        {
+            String station_address = getIntent().getStringExtra("Station_Address");
+            Double total = getIntent().getDoubleExtra("Total_Price", 0);
+            String fuelType = getIntent().getStringExtra("Fuel_Type");
+            Double fuelPrice = getIntent().getDoubleExtra("Fuel_Price", 0);
+
+            String date = new SimpleDateFormat("MM-dd-yyyy",
+                    Locale.getDefault()).format(new Date());
+            databaseManager.insertHistoryInfo(station_name,
+                    station_address,
+                    date,
+                    total,
+                    fuelType,
+                    fuelPrice);
+
+        }
         Cursor cursor = databaseManager.getAllRecords();
         sum(cursor);
 
@@ -94,6 +124,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
 
     public void sum(Cursor cursor) {
         double sum = 0;
+
         while(cursor.moveToNext()) {
             sum = sum + cursor.getDouble(5);
         }
