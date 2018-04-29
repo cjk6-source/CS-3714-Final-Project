@@ -33,7 +33,6 @@ public class GasFinder extends AppCompatActivity {
     public static final String CURRENT_LONGITUDE = "current_longitude";
 
     Button toHistory;
-    Button toLogger;
     Button toList;
     Button toMap;
 
@@ -43,11 +42,9 @@ public class GasFinder extends AppCompatActivity {
         setContentView(R.layout.activity_gas_finder);
 
         toHistory = findViewById(R.id.toHistory);
-        toLogger = findViewById(R.id.toLogger);
         toList = findViewById(R.id.toList);
         toMap = findViewById(R.id.toMap);
         toHistory.setEnabled(false);
-        toLogger.setEnabled(false);
         toList.setEnabled(false);
         toMap.setEnabled(false);
         gotResponse = false;
@@ -93,7 +90,6 @@ public class GasFinder extends AppCompatActivity {
         }
         gotResponse = true;
         toHistory.setEnabled(true);
-        toLogger.setEnabled(true);
         toList.setEnabled(true);
         toMap.setEnabled(true);
     }
@@ -103,11 +99,6 @@ public class GasFinder extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable(NEARBY_STATIONS, nearbyStations);
         intent.putExtras(bundle);
-        startActivity(intent);
-    }
-
-    public void onClickLog(View view) {
-        Intent intent = new Intent(this, LogActivity.class);
         startActivity(intent);
     }
 

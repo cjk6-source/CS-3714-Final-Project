@@ -22,7 +22,6 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
     //EditTexts
     EditText totalInput;
-    EditText perGalInput;
 
     RadioGroup radioGroup;
 
@@ -49,8 +48,6 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
         //EditTexts
         totalInput = findViewById(R.id.totalInput);
-        perGalInput = findViewById(R.id.perGalInput);
-
         //Buttons
         submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
