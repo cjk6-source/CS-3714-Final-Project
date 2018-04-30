@@ -1,8 +1,10 @@
 package com.example.michael.gasfinder;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -11,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -49,11 +53,11 @@ public class ListActivity extends AppCompatActivity {
 
 
         displayStations(nearbyStations);
-       // displayStations(nearbyStations);
 
     }
 
     public void findStations(View view) {
+        gasList.removeAllViews();
         displayStations(nearbyStations);
     }
 
@@ -63,6 +67,12 @@ public class ListActivity extends AppCompatActivity {
             String order = orderSpinner.getSelectedItem().toString();
             String fuelType = fuelSpinner.getSelectedItem().toString();
 
+            if (order.toLowerCase().equals("distance")) {
+                Collections.sort(myStations, new compareDistance());
+            } else {
+                Collections.sort(myStations, new comparePrice());
+            }
+
             ArrayList<GasStation> distanceFilter = new ArrayList<>();
 
             for (int i = 0; i < myStations.size(); i++) {
@@ -71,15 +81,19 @@ public class ListActivity extends AppCompatActivity {
                 }
             }
 
-            for (int i = 0; i < 20; i++) {
-                GasStation station = myStations.get(i);
+            int count = 0;
+            for (GasStation station : distanceFilter) {
+                if (count > 30) {
+                    break;
+                }
                 addRow(
                         station.getStationName(),
                         station.getDistance(),
                         fuelType,
                         station.getFuelPrice(fuelType),
                         station.getAddress(),
-                        i);
+                        count);
+                count++;
             }
         }
     }
@@ -197,6 +211,107 @@ public class ListActivity extends AppCompatActivity {
                 return R.drawable.citigologo;
             default:
                 return R.drawable.defaultlogo;
+        }
+    }
+
+    private class compareDistance implements Comparator<GasStation> {
+
+        @Override
+        public int compare(GasStation station, GasStation t1) {
+            if (station.getDoubleDistance() < t1.getDoubleDistance()) {
+                return -1;
+            } else if (station.getDoubleDistance() > t1.getDoubleDistance()) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    private class comparePrice implements Comparator<GasStation> {
+        String fuelType = fuelSpinner.getSelectedItem().toString();
+        @Override
+        public int compare(GasStation station, GasStation t1) {
+            if (fuelType.toLowerCase().equals("unleaded")) {
+
+                Double p1;
+                Double p2;
+                try {
+                    p1 = Double.parseDouble(station.getReg_price());
+                } catch (NumberFormatException e) {
+                    p1 = 0.0;
+                }
+                try {
+                    p2 = Double.parseDouble(t1.getReg_price());
+                } catch (NumberFormatException e) {
+                    p2 = 0.0;
+                }
+
+                if (p1 < p2) {
+                    return -1;
+                } else if (p1 > p2) {
+                    return 1;
+                }
+                return 0;
+            } else if (fuelType.toLowerCase().equals("plus")) {
+                Double p1;
+                Double p2;
+                try {
+                    p1 = Double.parseDouble(station.getMid_price());
+                } catch (NumberFormatException e) {
+                    p1 = 0.0;
+                }
+                try {
+                    p2 = Double.parseDouble(t1.getMid_price());
+                } catch (NumberFormatException e) {
+                    p2 = 0.0;
+                }
+
+                if (p1 < p2) {
+                    return -1;
+                } else if (p1 > p2) {
+                    return 1;
+                }
+                return 0;
+            } else if (fuelType.toLowerCase().equals("premium")) {
+                Double p1;
+                Double p2;
+                try {
+                    p1 = Double.parseDouble(station.getPrem_price());
+                } catch (NumberFormatException e) {
+                    p1 = 0.0;
+                }
+
+                try {
+                    p2 = Double.parseDouble(t1.getPrem_price());
+                } catch (NumberFormatException e) {
+                    p2 = 0.0;
+                }
+                if (p1 < p2) {
+                    return -1;
+                } else if (p1 > p2) {
+                    return 1;
+                }
+                return 0;
+            } else { //diesel
+                Double p1;
+                Double p2;
+                try {
+                    p1 = Double.parseDouble(station.getDiesel_price());
+                } catch (NumberFormatException e) {
+                    p1 = 0.0;
+                }
+                try {
+                    p2 = Double.parseDouble(t1.getDiesel_price());
+                } catch (NumberFormatException e) {
+                    p2 = 0.0;
+                }
+                if (p1 < p2) {
+                    return -1;
+                } else if (p1 > p2) {
+                    return 1;
+                }
+                return 0;
+            }
         }
     }
 }
