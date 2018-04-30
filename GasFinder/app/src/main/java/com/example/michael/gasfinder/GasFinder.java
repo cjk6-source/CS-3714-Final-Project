@@ -79,6 +79,7 @@ public class GasFinder extends AppCompatActivity {
     }
 
     public void saveStations(JSONArray arr) {
+        nearbyStations.clear();
         for (int i = 0; i < arr.length(); i++) {
             try {
                 JSONObject o = arr.getJSONObject(i);

@@ -14,11 +14,30 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MY GAS APP"
+            android:textColor="@color/textOrange"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="20sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/flamelogo"
+            android:adjustViewBounds="true"
+            android:maxHeight="200sp"
+            android:layout_marginBottom="20sp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="30dp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
             android:weightSum="2">
 
             <Button
@@ -30,7 +49,9 @@
                 android:textAllCaps="false"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:onClick="onClickHistory"/>
+                android:onClick="onClickHistory"
+                android:textStyle="bold"
+                android:textColor="@color/textOrange"/>
 
             <Button
                 android:layout_width="20dp"
@@ -41,20 +62,22 @@
                 android:textAllCaps="false"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:onClick="onClickMap"/>
-
-
+                android:onClick="onClickMap"
+                android:textStyle="bold"
+                android:textColor="@color/textOrange"/>
         </LinearLayout>
 
         <Button
             android:layout_width="300dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:id="@+id/toList"
             android:text="Gas Near Me"
             android:textSize="30sp"
             android:textAllCaps="false"
             android:layout_gravity="center"
-            android:onClick="onClickList"/>
+            android:onClick="onClickList"
+            android:textColor="@color/textOrange"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

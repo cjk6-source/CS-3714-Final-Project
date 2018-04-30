@@ -1,6 +1,7 @@
 package com.example.michael.gasfinder;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,6 +58,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     public void findStations(View view) {
+        Log.d("yee", Integer.toString(nearbyStations.size()));
         gasList.removeAllViews();
         displayStations(nearbyStations);
     }
@@ -141,6 +143,8 @@ public class ListActivity extends AppCompatActivity {
         final int z = index;
         TextView stationName = new TextView(this);
         stationName.setText(name);
+        stationName.setTextSize(20);
+        stationName.setTextColor(getResources().getColor(R.color.textOrange));
         textLayout.addView(stationName);
         TextView travelDistance = new TextView(this);
         travelDistance.setText("Distance: " + distance);

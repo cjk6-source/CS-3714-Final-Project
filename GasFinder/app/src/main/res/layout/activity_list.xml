@@ -17,19 +17,19 @@
             <TableRow>
                 <TextView
                     android:text="@string/distance"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textOrange"
                     android:layout_gravity="center"
                     android:textSize="20sp"
                     />
                 <TextView
                     android:text="@string/fuel_type"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textOrange"
                     android:layout_gravity="center"
                     android:textSize="20sp"
                     />
                 <TextView
                     android:text="@string/order_by"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textOrange"
                     android:layout_gravity="center"
                     android:textSize="20sp"
                     />
@@ -58,8 +58,9 @@
                 <TextView />
                 <Button
                     android:text="@string/find_stations"
-                    android:textSize="15sp"
-                    android:onClick="findStations"/>
+                    android:textSize="20sp"
+                    android:onClick="findStations"
+                    android:textColor="@color/textOrange"/>
             </TableRow>
         </TableLayout>
 

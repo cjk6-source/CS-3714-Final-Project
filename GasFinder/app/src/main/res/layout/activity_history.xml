@@ -11,22 +11,36 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="Back"
+        android:textColor="@color/textOrange"/>
 
     <Button
         android:id="@+id/clear_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:text="Clear All" />
+        android:text="Clear All"
+        android:textColor="@color/textOrange"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/history"
+        android:layout_below="@id/back"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/textOrange"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/total_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/back"
+        android:layout_below="@+id/title"
         android:text="Total: $"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="@color/textOrange"/>
 
     <TextView
         android:id="@+id/total_sum"
@@ -35,7 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/total_text"
-        android:layout_toEndOf="@+id/total_text"/>
+        android:layout_toEndOf="@+id/total_text"
+        android:textColor="@color/textOrange"/>
 
     <ListView
         android:id="@+id/history_list"
