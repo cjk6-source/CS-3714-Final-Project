@@ -1,5 +1,2 @@
-# CS-3714-Final-Project
-MAKE SURE WHEN YOU CLONE THE REPO, USE GIT FROM COMMAND LINE.
-DO NOT USE THE INBUILT ANDROID STUDIO GIT MANAGER, IT WILL BREAK.
-LOVE,
-MIKE
+# Gas-Finder
+An Android application that finds gas stations near the user and displays their gas prices as well as their location on a map.
